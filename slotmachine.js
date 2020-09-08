@@ -30,6 +30,7 @@ var slotMachine = {
     for (let reel of this.reels) {
       let slot = Object.create(reel);
       // TODO: Declare a position variable and loop
+      // TODO: Use temporary object for each slot
       slot.position = (reel.symbols.length + slot.position - 1) % reel.symbols.length;
       line1.push(slot.display());
       slot.position = (reel.symbols.length + slot.position + 1) % reel.symbols.length;
