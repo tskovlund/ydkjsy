@@ -26,19 +26,20 @@ var slotMachine = {
     });
   },
   display() {
-    let line1 = "", line2 = "", line3 = "";
+    let line1 = [], line2 = [], line3 = [];
     for (let reel of this.reels) {
-      // TODO: Fix modulo wrapping
-      reel.position -= 1;
-      line1 += reel.display() + " |";
-      reel.position += 1;
-      line2 += reel.display() + " |";
-      reel.position += 1;
-      line3 += reel.display() + " |";
+      let slot = Object.create(reel);
+      // TODO: Declare a position variable and loop
+      slot.position = (reel.symbols.length + slot.position - 1) % reel.symbols.length;
+      line1.push(slot.display());
+      slot.position = (reel.symbols.length + slot.position + 1) % reel.symbols.length;
+      line2.push(slot.display());
+      slot.position = (reel.symbols.length + slot.position + 1) % reel.symbols.length;
+      line3.push(slot.display());
     }
-    console.log(line1);
-    console.log(line2);
-    console.log(line3);
+    console.log(line1.join(" | "));
+    console.log(line2.join(" | "));
+    console.log(line3.join(" | "));
   },
 };
 
